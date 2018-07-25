@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="MultiPassengerBookingScript" key="{720DE438-7520-429E-B1E9-AFB3C6ADCE0C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="MultiPassengerBookingScript.js" />
+		</child>
+		<child name="SinglePassengerFillingScript" key="{B5FE34F9-B0E1-4520-BE31-F00EE5F4F82C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SinglePassengerFillingScript.js" />
+		</child>
+		<child name="DynamicPaxandTestCase" key="{01DD7D76-4763-40F3-A61E-BAE3072DC44A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DynamicPaxandTestCase.js" />
+		</child>
+		<child name="DynamicPaxGenericFaker" key="{3EF41698-32EC-4DCE-85B8-535CD948203C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DynamicPaxGenericFaker.js" />
+		</child>
+		<child name="DynamicPaxBookingScript" key="{8EFD071F-2845-4204-8631-341309B68F1B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DynamicPaxBookingScript.js" />
+		</child>
+		<child name="faker" key="{053354A2-E2AE-417F-B342-E357E61A725C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="faker.js" />
+		</child>
+		<child name="Unit1" key="{793917E8-F869-45AC-9E4E-CD2149FAD074}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Unit1.js" />
+		</child>
+		<child name="Unit3" key="{F006EF57-97E9-4EB5-8C50-49D6BE90764D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Unit3.js" />
+		</child>
+	</children>
+	<folders />
+</Root>

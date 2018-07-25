@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="Common" key="{A60312C6-0CD9-4E28-BEB9-508C2FF0BCC1}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Common.js" />
+		</child>
+		<child name="Login" key="{119F78A6-477F-4692-8879-D76174EA505E}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Login.js" />
+		</child>
+		<child name="HomePage" key="{E84B40D4-342A-476C-86B7-43D97B70ED87}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="HomePage.js" />
+		</child>
+		<child name="BoardingScreen" key="{86D37598-AEFD-4667-9319-906FEB5BD525}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardingScreen.js" />
+		</child>
+		<child name="LaunchFlyDubai" key="{A11EBF89-C8A5-4DCB-B685-743FF2DE89DA}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="LaunchFlyDubai.js" />
+		</child>
+		<child name="BoardiPaxWithIncorrectSeatNumber" key="{4EF1F613-40BE-4779-A96A-30A5C2E2781F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardiPaxWithIncorrectSeatNumber.js" />
+		</child>
+		<child name="FlightScreenYetToBoard" key="{6B184FBB-43D8-4A34-8E42-55BF5DF6D333}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="FlightScreenYetToBoard.js" />
+		</child>
+		<child name="BoardPaxWithIncorrectSequenceNumber" key="{E14F428D-6F9D-4356-B9CB-B7770CA11616}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardPaxWithIncorrectSequenceNumber.js" />
+		</child>
+		<child name="BoardInfantPaxWithValidSequenceNumber" key="{5388580D-5D3C-4C2D-9577-5DF38F20A591}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardInfantPaxWithValidSequenceNumber.js" />
+		</child>
+		<child name="DynamicPaxGenericFaker" key="{38457DFF-24ED-41D6-B19C-3D4771817CA8}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="..\..\FlightBooking\Script\DynamicPaxGenericFaker.js" />
+		</child>
+		<child name="faker" key="{7B917732-0E99-4C01-B062-6FE07B81016C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="..\..\FlightBooking\Script\faker.js" />
+		</child>
+		<child name="ReadCreds" key="{8E1D4D65-906C-48EA-9167-7FAAA834EDE1}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ReadCreds.js" />
+		</child>
+		<child name="CheckInScreen" key="{20DFFD31-CB77-43F8-808C-81908CF73F39}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="CheckInScreen.js" />
+		</child>
+		<child name="CheckPaxInCheckIn" key="{3BA07439-2391-4712-82C5-6E1C8343753B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="CheckPaxInCheckIn.js" />
+		</child>
+		<child name="ReadDataFromTextFile" key="{15E0C113-E490-48D0-90E9-CE7EB84C3C17}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ReadDataFromTextFile.js" />
+		</child>
+		<child name="BoardADTPaxWithValidSeatNum" key="{22844ABC-29FF-4CAB-A5F8-00BB9D5A6304}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardADTPaxWithValidSeatNum.js" />
+		</child>
+		<child name="BoardADTPaxWithValidSeqNum" key="{1D1A6D0F-92EC-473E-9BC5-A948164BABE4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardADTPaxWithValidSeqNum.js" />
+		</child>
+		<child name="BoardCHDPax" key="{6D7F51B8-6940-4FD9-9C57-6A9F7FBA37FD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardCHDPax.js" />
+		</child>
+		<child name="BoardMultiplePaxUsingSeatNums" key="{9102B546-DF95-4159-843F-CE38851076D9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardMultiplePaxUsingSeatNums.js" />
+		</child>
+		<child name="BoardMulitplePaxUsingRangeOfValidSeqNums" key="{A4142BB0-79C4-4EAD-B2CC-946F9800A881}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardMulitplePaxUsingRangeOfValidSeqNums.js" />
+		</child>
+		<child name="BoardMultiPaxSomeWithInfant_C009" key="{DC9736BD-2EC3-427E-B39D-1D7EB464724A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardMultiPaxSomeWithInfant_C009.js" />
+		</child>
+		<child name="BoardMultiPaxADT_CHD_C008" key="{C630BF24-EE12-44D2-800A-099FC1DE3180}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardMultiPaxADT_CHD_C008.js" />
+		</child>
+		<child name="TestWithCount" key="{F76D3716-3354-4A2A-B06B-729F59369D74}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TestWithCount.js" />
+		</child>
+		<child name="EmptyFlightSearch" key="{88D75AC4-33D0-41DD-9414-8FEF7735FA38}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="EmptyFlightSearch.js" />
+		</child>
+		<child name="FlightList" key="{4EB76FFA-6997-4802-A0A3-40D64ACDEEF6}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="FlightList.js" />
+		</child>
+		<child name="SearchWithFlightNum" key="{CBCB0AF3-AA15-4F79-8808-E8FBDD74335D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SearchWithFlightNum.js" />
+		</child>
+		<child name="SearchWithFlightNumAndDate" key="{AA1EF64D-833F-4CCE-BD67-B72225BC5325}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SearchWithFlightNumAndDate.js" />
+		</child>
+		<child name="PassengerList" key="{0317075C-6C1C-4E08-ADFA-9B9012917D42}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PassengerList.js" />
+		</child>
+		<child name="SearchWithFlightNumDateAndDestination" key="{B49F1C27-D26F-4439-BF37-9231D3492434}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SearchWithFlightNumDateAndDestination.js" />
+		</child>
+		<child name="Basic" key="{F1474365-B392-4BE8-86BB-287C0A860167}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Basic.js" />
+		</child>
+		<child name="Advanced" key="{CA81FC1D-04C3-44C9-B452-32608BBA9E2A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Advanced.js" />
+		</child>
+		<child name="PNRSearch" key="{ECEFA373-51A4-47A3-815D-3554E7C931DD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PNRSearch.js" />
+		</child>
+		<child name="FlightControlDashboard" key="{034BBD6A-AABD-4D14-B5B4-FA634F6DFFD2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="FlightControlDashboard.js" />
+		</child>
+		<child name="TestCode" key="{57C93223-8F20-46A2-BEBA-6CCA672CE783}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TestCode.js" />
+		</child>
+		<child name="FlightControlScreen" key="{2B6D97F1-4439-4399-8D4B-44CA55641E85}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="FlightControlScreen.js" />
+		</child>
+		<child name="BaggageInformation" key="{E85C4235-F821-4B83-9632-7022D29C6F13}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BaggageInformation.js" />
+		</child>
+		<child name="SeatInformation" key="{28693939-58C7-43D6-8557-5C0AD0FFFAF9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SeatInformation.js" />
+		</child>
+		<child name="BoardedPassengersList" key="{07D3CECB-E18C-403A-A6F1-A794E9CE72B5}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoardedPassengersList.js" />
+		</child>
+	</children>
+	<folders>
+		<folder caption="Utility" description="A logical folder that is used to organize project items and elements." moniker="">
+			<references>
+				<ref key="{A60312C6-0CD9-4E28-BEB9-508C2FF0BCC1}" />
+				<ref key="{A11EBF89-C8A5-4DCB-B685-743FF2DE89DA}" />
+			</references>
+		</folder>
+		<folder caption="Repository" description="A logical folder that is used to organize project items and elements." moniker="">
+			<folders>
+				<folder caption="CheckIn" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{20DFFD31-CB77-43F8-808C-81908CF73F39}" />
+						<ref key="{0317075C-6C1C-4E08-ADFA-9B9012917D42}" />
+						<ref key="{F1474365-B392-4BE8-86BB-287C0A860167}" />
+						<ref key="{CA81FC1D-04C3-44C9-B452-32608BBA9E2A}" />
+						<ref key="{E85C4235-F821-4B83-9632-7022D29C6F13}" />
+						<ref key="{28693939-58C7-43D6-8557-5C0AD0FFFAF9}" />
+					</references>
+				</folder>
+				<folder caption="Common" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{4EB76FFA-6997-4802-A0A3-40D64ACDEEF6}" />
+						<ref key="{E84B40D4-342A-476C-86B7-43D97B70ED87}" />
+						<ref key="{119F78A6-477F-4692-8879-D76174EA505E}" />
+					</references>
+				</folder>
+				<folder caption="Boarding" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{6B184FBB-43D8-4A34-8E42-55BF5DF6D333}" />
+						<ref key="{86D37598-AEFD-4667-9319-906FEB5BD525}" />
+						<ref key="{07D3CECB-E18C-403A-A6F1-A794E9CE72B5}" />
+					</references>
+				</folder>
+				<folder caption="FCM" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{034BBD6A-AABD-4D14-B5B4-FA634F6DFFD2}" />
+						<ref key="{2B6D97F1-4439-4399-8D4B-44CA55641E85}" />
+					</references>
+				</folder>
+			</folders>
+		</folder>
+		<folder caption="TestScripts" description="A logical folder that is used to organize project items and elements." moniker="">
+			<folders>
+				<folder caption="Search" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{88D75AC4-33D0-41DD-9414-8FEF7735FA38}" />
+						<ref key="{CBCB0AF3-AA15-4F79-8808-E8FBDD74335D}" />
+						<ref key="{AA1EF64D-833F-4CCE-BD67-B72225BC5325}" />
+						<ref key="{B49F1C27-D26F-4439-BF37-9231D3492434}" />
+						<ref key="{ECEFA373-51A4-47A3-815D-3554E7C931DD}" />
+					</references>
+				</folder>
+			</folders>
+			<references>
+				<ref key="{4EF1F613-40BE-4779-A96A-30A5C2E2781F}" />
+				<ref key="{E14F428D-6F9D-4356-B9CB-B7770CA11616}" />
+				<ref key="{5388580D-5D3C-4C2D-9577-5DF38F20A591}" />
+				<ref key="{3BA07439-2391-4712-82C5-6E1C8343753B}" />
+				<ref key="{22844ABC-29FF-4CAB-A5F8-00BB9D5A6304}" />
+				<ref key="{1D1A6D0F-92EC-473E-9BC5-A948164BABE4}" />
+				<ref key="{6D7F51B8-6940-4FD9-9C57-6A9F7FBA37FD}" />
+				<ref key="{9102B546-DF95-4159-843F-CE38851076D9}" />
+				<ref key="{A4142BB0-79C4-4EAD-B2CC-946F9800A881}" />
+				<ref key="{DC9736BD-2EC3-427E-B39D-1D7EB464724A}" />
+				<ref key="{C630BF24-EE12-44D2-800A-099FC1DE3180}" />
+				<ref key="{F76D3716-3354-4A2A-B06B-729F59369D74}" />
+				<ref key="{57C93223-8F20-46A2-BEBA-6CCA672CE783}" />
+			</references>
+		</folder>
+		<folder caption="Data" description="A logical folder that is used to organize project items and elements." moniker="">
+			<references>
+				<ref key="{8E1D4D65-906C-48EA-9167-7FAAA834EDE1}" />
+				<ref key="{15E0C113-E490-48D0-90E9-CE7EB84C3C17}" />
+			</references>
+		</folder>
+	</folders>
+</Root>

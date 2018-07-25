@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="12.0" key="{7180BA7A-02FC-4F1F-A324-BFEE19980350}">
+	<children>
+		<child name="FlightBooking" key="{EE003C69-085A-404B-9DE0-488ED10D2723}" type="Project" typeId="{362A8EE5-675E-43A9-869D-06ECE80B0CB4}" pluginName="">
+			<data path="FlightBooking\FlightBooking.mds" />
+		</child>
+		<child name="DCSFlyDubai" key="{010C0401-4B07-40A3-AE37-9F2010780547}" type="Project" typeId="{362A8EE5-675E-43A9-869D-06ECE80B0CB4}" pluginName="">
+			<data path="DCSFlyDubai\DCSFlyDubai.mds" />
+		</child>
+	</children>
+	<folders />
+	<testItems key="{51BC0CBB-CB4C-4D34-AA97-54B5C273CD56}">
+		<children>
+			<testItem key="{EE003C69-085A-404B-9DE0-488ED10D2723}" enabled="True" timeout="0" stopOnError="True" description="" />
+			<testItem key="{010C0401-4B07-40A3-AE37-9F2010780547}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{FD79497D-7344-4A6D-BC6F-5A7BCFFFD15D}">
+		<data Version="3" />
+	</variables>
+	<analysis key="{2BE5F82D-B719-47A4-8E1C-937AB981DF25}" />
+	<scc key="{C900492B-D218-429C-9AA0-264B7D78CA88}" name="Git Plugin">
+		<data />
+	</scc>
+	<extender key="{1A3FC97E-9A66-4716-B166-35D10B4146E0}" />
+</Root>
