@@ -45,7 +45,7 @@ function SelectDropDownValue(DropDownObject,Value){
           aqUtils.Delay(2000);
 }
 
-function EnterTextInTextBox(TextBoxField,TimeoutInSeconds,EnterString){
+function SafeSetText(TextBoxField,TimeoutInSeconds,EnterString){
     if(IsObjectVisibleOnScreen(TextBoxField,TimeoutInSeconds))
          if(TextBoxField.WaitProperty("Enabled",true)){
              TextBoxField.Clear();
@@ -57,7 +57,7 @@ function EnterTextInTextBox(TextBoxField,TimeoutInSeconds,EnterString){
          }
 }
 
-function EnterTextInPasswordField(PasswordField, TimeoutInSeconds,Password){
+function SafeKeys(PasswordField, TimeoutInSeconds,Password){
       if(IsObjectVisibleOnScreen(PasswordField,TimeoutInSeconds)){
           if(PasswordField.WaitProperty("Enabled",true)){
               PasswordField.Clear();
@@ -86,8 +86,8 @@ function GetSeatOrSeqNumbersFromArray(SeatArray){
 }
 
 module.exports.IsObjectVisibleOnScreen = IsObjectVisibleOnScreen;
-module.exports.EnterTextInTextBox = EnterTextInTextBox;
-module.exports.EnterTextInPasswordField = EnterTextInPasswordField;
+module.exports.SafeSetText = SafeSetText;
+module.exports.SafeKeys = SafeKeys;
 module.exports.SafeClickObject = SafeClickObject;
 module.exports.SelectDropDownValue = SelectDropDownValue;
 module.exports.IsObjectVisibleOnScreen = IsObjectVisibleOnScreen;
