@@ -22,6 +22,8 @@ function IsObjectVisibleOnScreen(Object, MaxTimeoutInSeconds){
               return sFlag;
 }      
 
+//THis is added 
+
 function WaitForObject(Object,MaxTimeoutInSeconds){
       try{
         Object.WaitProperty("VisibleOnScreen",true,MaxTimeoutInSeconds*1000);        
