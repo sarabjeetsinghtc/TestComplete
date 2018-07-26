@@ -115,6 +115,9 @@
 		<child name="BoardedPassengersList" key="{07D3CECB-E18C-403A-A6F1-A794E9CE72B5}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="BoardedPassengersList.js" />
 		</child>
+		<child name="APIS" key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="APIS.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="Utility" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -183,6 +186,7 @@
 				<ref key="{C630BF24-EE12-44D2-800A-099FC1DE3180}" />
 				<ref key="{F76D3716-3354-4A2A-B06B-729F59369D74}" />
 				<ref key="{57C93223-8F20-46A2-BEBA-6CCA672CE783}" />
+				<ref key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" />
 			</references>
 		</folder>
 		<folder caption="Data" description="A logical folder that is used to organize project items and elements." moniker="">
