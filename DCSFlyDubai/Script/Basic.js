@@ -41,8 +41,7 @@ function GetSeatNumOfCheckedInPassengers(){
                        Seats.push(SeatNum);
                   }     
             } 
-            return Seats;     
-            //return Common.GetSeatOrSeqNumbersFromArray(Seats);
+            return Seats;
 }
 
 function NavigateToSeatInformation(){
@@ -55,6 +54,14 @@ function NavigateToBaggageInformation(){
                    Tab.Click();
 }
 
+function OffloadPopUp(){
+          var PaxList = HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "CheckinSelectedPaxView", 1000).Find("WPFControlName","passengerList",1000);
+          Log.Message(PaxList.Items.Count);
+          PaxList.WPFObject("ListBoxItem", "", 1).ClickR();
+          aqUtils.Delay(2000);
+}
+
+
 
 module.exports.IsBasicScreenDisplayed = IsBasicScreenDisplayed;
 module.exports.NavigateToAdvancedScreen = NavigateToAdvancedScreen;
@@ -63,3 +70,4 @@ module.exports.CheckPassengersIn = CheckPassengersIn;
 module.exports.GetSeatNumOfCheckedInPassengers= GetSeatNumOfCheckedInPassengers;
 module.exports.NavigateToSeatInformation = NavigateToSeatInformation;
 module.exports.NavigateToBaggageInformation = NavigateToBaggageInformation;
+module.exports.OffloadPopUp = OffloadPopUp;
