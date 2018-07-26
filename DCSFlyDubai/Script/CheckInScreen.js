@@ -16,17 +16,17 @@ function IsCheckInScreenDisplayed(){
 // Type should be 0 for Passenger and 1 for Flight in case OnlyFlightSearch is true else it can be skipped
 function SearchFlightOrPassenger(OnlyFlightSearch, SearchDetails,Type){
           if(OnlyFlightSearch){
-                  Common.EnterTextInTextBox(HomePage.txtSearchFlight,20,SearchDetails);
+                  Common.SafeSetText(HomePage.txtSearchFlight,20,SearchDetails);
           }
           else{
                   var SearchType = HomePage.ContentGrid.Border.Grid.Grid.Grid.Grid.WPFObject("Grid", "", 1).WPFObject("Border", "", 1).WPFObject("Grid", "", 1).WPFObject("searchModeTypeContainer").WPFObject("comboType");
                   Common.SelectDropDownValue(SearchType,Type);
                   switch(SearchType.wText){
                       case "Flight":
-                            Common.EnterTextInTextBox(HomePage.txtSearchFlight,20,SearchDetails);
+                            Common.SafeSetText(HomePage.txtSearchFlight,20,SearchDetails);
                             break;
                       case "Passenger":  
-                            Common.EnterTextInTextBox(HomePage.ContentGrid.Border.Grid.Grid.Grid.Grid.txtSearchPassenger,20,SearchDetails);
+                            Common.SafeSetText(HomePage.ContentGrid.Border.Grid.Grid.Grid.Grid.txtSearchPassenger,20,SearchDetails);
                             break;   
                        default:
                             Log.Error("Flight/Passenger should be selected");

@@ -12,20 +12,15 @@ function IsPassengerListScreenDisplayed(FlightNum){
 }
 
 function SelectPassengerFromTheList(PNR){
+        Common.SafeKeys(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("CheckinMainViewContent").WPFObject("FlightSelectPassengerResults").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("SearchBox"),5,PNR);
+        aqUtils.Delay(1000);
         var PassengerGrid = HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("CheckinMainViewContent").WPFObject("FlightSelectPassengerResults").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 2).WPFObject("parentBdr").WPFObject("Grid", "", 1).WPFObject("headerGrid").WPFObject("ScrollViewer", "", 1).WPFObject("ParentDataGrid");
-        Log.Message(PassengerGrid.Items.Count );
+        Log.Message(PassengerGrid.Items.Count);
         if(PassengerGrid.Items.Count > 0){
-              Log.Message("Passengers are available");
-              for(var i=1;i<PassengerGrid.Items.Count+1;i++){
-                  var CheckPNR= PassengerGrid.WPFObject("DataGridRow", "", i).WPFObject("DataGridCell", "", 4).WPFObject("ContentPresenter", "", 1).WPFObject("TextBlock", "*", 1);
-                  if(CheckPNR.WPFControlText == PNR){
-                      CheckPNR.DblClick();
-                      break;
-                  }
-              }              
+                  PassengerGrid.WPFObject("DataGridRow", "", 1).DblClick();       
         }
         else{
-              Log.Message("There are no passengers available");
+              Log.Message("There are no passenge(s) with the given PNR");
         }
         
 }

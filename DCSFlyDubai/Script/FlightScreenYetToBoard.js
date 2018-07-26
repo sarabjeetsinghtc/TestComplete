@@ -39,25 +39,24 @@ function CheckBoardingRestrictionPopUp(){
       }
 }
 
-function PerformOffloadOrOffloadToStandby(Seats,Action){
-       var NumOfBoardedPax = YetToBoard.Border.Grid.BoardingPaxListGrid.Items.Count;
-       Log.Message(NumOfBoardedPax);
-       var SeatFound = false;       
-       for(var i=1;i<NumOfBoardedPax+1;i++){
-            for(var j=0;j<Seats.length;j++){
-                  var PaxSeatCell = YetToBoard.Border.Grid.BoardingPaxListGrid.WPFObject("DataGridRow", "", i).WPFObject("DataGridCell", "", 3).WPFObject("ContentPresenter", "", 1).WPFObject("Grid", "", 1).WPFObject("TextBlock", "*", 1);
-                  if(PaxSeatCell.WPFControlText == Seats[j] && PaxSeatCell.WPFControlText != "INF"){
-                        PaxSeatCell.ClickR();
-                        SeatFound = true;
-                        break;
-                  }
-            }
-            if(SeatFound)
-              break;
-       }
-       aqUtils.Delay(1000);
-       
-       switch(Action){
+function SearchPassenger(Seat){
+      Common.SafeKeys(YetToBoard.WPFObject("ModuleContent").WPFObject("BoardingView", "", 1).Find("ClrClassName","SearchTextBox",700),5,Seat)
+      var Paxgrid = YetToBoard.Border.Grid.BoardingPaxListGrid;
+      aqUtils.Delay(1000);
+      if(Paxgrid.Items.Count > 0){
+            Log.Message("Passenger with the given seat number is found");     
+      }
+      else{
+            Log.Message("There is no passenger with the seat numer: "+Seat);
+      }
+}      
+
+function PassengerOffload(Action){
+      //var Paxgrid = YetToBoard.Border.Grid.BoardingPaxListGrid;
+     // Paxgrid.WPFObject("DataGridRow", "", 1).ClickR();
+     // aqUtils.Delay(1000);
+      
+      switch(Action){
             case "Offload":
                   Common.SafeClickObject(Aliases.flydubai_DCS_UI.WPFObject("HwndSource: PopupRoot", "").WPFObject("PopupRoot", "", 1).WPFObject("Decorator", "", 1).WPFObject("NonLogicalAdornerDecorator", "", 1).WPFObject("ContextMenu", "", 1).WPFObject("MenuItem", "Offload", 1),4);
                   break;
@@ -68,25 +67,24 @@ function PerformOffloadOrOffloadToStandby(Seats,Action){
                   Common.SafeClickObject(Aliases.flydubai_DCS_UI.WPFObject("HwndSource: PopupRoot", "").WPFObject("PopupRoot", "", 1).WPFObject("Decorator", "", 1).WPFObject("NonLogicalAdornerDecorator", "", 1).WPFObject("ContextMenu", "", 1).WPFObject("MenuItem", "Offload Onwards", 3),4);
                   break;
             default :
-                  Log.Message("Provide appropriate action");
+                  Log.Message("Select appropriate action");
                   break;
        }
-       aqUtils.Delay(3000);
+       aqUtils.Delay(4000);
        
-       var Popup = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow;
-       
+       var Popup = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow;       
        if(Popup.WPFControlText == "Offload Passenger Confirmation ?"){                 
                 Common.SafeClickObject(Popup.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Border", "", 2).WPFObject("StackPanel", "", 1).WPFObject("Button", "Proceed", 2),5);
        }
        else if(Popup.WPFControlText == "Offload Passengers"){
                  SelectAllPaxForOffloadOrOffloadToStandby();
-                Common.SafeClickObject(Popup.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("OffloadPassengerUserControl").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Border", "", 3).WPFObject("Grid", "",1).WPFObject("StackPanel", "", 2).WPFObject("Button", "Offload", 2),4);
+                 Common.SafeClickObject(Popup.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("OffloadPassengerUserControl").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Border", "", 3).WPFObject("Grid", "",1).WPFObject("StackPanel", "", 2).WPFObject("Button", "Offload", 2),4);
        }
        else if(Popup.WPFControlText == "Offload passengers to stand by"){
                 SelectAllPaxForOffloadOrOffloadToStandby();
                 Common.SafeClickObject(Popup.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("OffloadPassengerUserControl").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Border", "", 3).WPFObject("Grid", "",1).WPFObject("StackPanel", "", 2).WPFObject("Button", "Offload to standby", 2),4);
-       }      
-}
+       }     
+}        
 
 function SelectAllPaxForOffloadOrOffloadToStandby(){ 
       var Popup = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow;
@@ -105,4 +103,5 @@ module.exports.CheckBoardingRestrictionPopUp = CheckBoardingRestrictionPopUp;
 module.exports.IsYetToBoardScreenDisplayed = IsYetToBoardScreenDisplayed;
 module.exports.YetToBoard =YetToBoard;
 module.exports.NavigateToBoardedTab = NavigateToBoardedTab;
-module.exports.PerformOffloadOrOffloadToStandby = PerformOffloadOrOffloadToStandby;
+module.exports.SearchPassenger = SearchPassenger;
+module.exports.PassengerOffload = PassengerOffload;
