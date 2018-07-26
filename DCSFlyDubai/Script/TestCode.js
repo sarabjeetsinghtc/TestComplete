@@ -18,7 +18,7 @@ var BoardedPassengersList = require("BoardedPassengersList");
 
 function Check(){
        //var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\config.txt");
-       //DynamicPaxGenericFaker.generateTestData(config);
+       //DynamicPaxGenericFaker.generateTestData(config, true);
        LaunchFlyDubai.LaunchFlyDubaiDCSApp();
        var LoginDetails = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\DCSCredentials.txt");
        var BookingData = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\TestData_A-001.txt");
