@@ -22,7 +22,6 @@ function IsObjectVisibleOnScreen(Object, MaxTimeoutInSeconds){
               return sFlag;
 }      
 
-//THis is added 
 
 function WaitForObject(Object,MaxTimeoutInSeconds){
       try{
@@ -59,15 +58,15 @@ function SafeSetText(TextBoxField,TimeoutInSeconds,EnterString){
          }
 }
 
-function SafeKeys(PasswordField, TimeoutInSeconds,Password){
-      if(IsObjectVisibleOnScreen(PasswordField,TimeoutInSeconds)){
-          if(PasswordField.WaitProperty("Enabled",true)){
-              PasswordField.Clear();
-              PasswordField.Keys(Password);
-              Log.Message("Password has been entered in "+PasswordField.FullName);
+function SafeKeys(Field,TimeoutInSeconds,EnterString){
+      if(IsObjectVisibleOnScreen(Field,TimeoutInSeconds)){
+          if(Field.WaitProperty("Enabled",true)){
+              Field.Clear();
+              Field.Keys(EnterString);
+              Log.Message("Password has been entered in "+Field.FullName);
           }
           else{
-              Log.Message("Unable to enter the password in "+PasswordField.FullName);
+              Log.Message("Unable to enter the password in "+Field.FullName);
           }
       }
 }
