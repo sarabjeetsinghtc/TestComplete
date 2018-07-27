@@ -35,7 +35,7 @@ function SelectDropDownValue(DropDownObject,Value){
         
           if(DropDownObject.VisibleOnScreen && DropDownObject.Enabled){
                 DropDownObject.DropDown();
-                aqUtils.Delay(2000);
+                aqUtils.Delay(1000);
                 DropDownObject.ClickItem(Value);
                 DropDownObject.CloseUp();
                 Log.Message(Value +" is selected from the "+DropDownObject.FullName+" dropdown");
@@ -43,7 +43,7 @@ function SelectDropDownValue(DropDownObject,Value){
           else{
                 Log.Message("Unable to select value from the dropdown"+DropDownObject.FullName);
           }
-          aqUtils.Delay(2000);
+          aqUtils.Delay(1000);
 }
 
 function SafeSetText(TextBoxField,TimeoutInSeconds,EnterString){

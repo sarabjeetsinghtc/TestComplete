@@ -1,11 +1,10 @@
 ﻿var faker = require("faker");
 var formMonths = ["1 Jan", "2 Feb", "3 Mar", "4 Apr", "5 May", "6 Jun", "7 Jul", "8 Aug", "9 Sep", "10 Oct", "11 Nov", "12 Dec"];
 
-function generateTestData(config) {    
+function generateTestData(config, isAPISRequired) {    
     var bookingPage, flightSelectSection, paxFormPage, paxFormSection, paxForm, optionalExtraPage, paymentPage;
     var selectedEnvironment = config[config.selectedEnv];
     var url = selectedEnvironment.Url + config.queryParameter;
-    //var url = "http://dev1flights.flydubai.com/en/results/ow/a1c0i0/DXB_SKT/20180727";
     var paxCount = url.split('/')[6];
     var adults, children, infants, totalPax, i, count = 1;
     
@@ -60,23 +59,29 @@ function generateTestData(config) {
             paxForm.Panel(0).Panel(3).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("pax1c12").Select("telcountryCode0").ClickItem(fakerObject.CountryCode);
             paxForm.Panel(0).Panel(3).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel("pax1c13").Textbox("telNumber0").SetText(fakerObject.TelNumber);
             paxForm.Panel(0).Panel(3).Panel(2).Panel(0).Panel(0).Panel(0).Panel(1).Panel("pax1c14").Select("aCountryOfResidence0").ClickItem(fakerObject.Country);
+            if(isAPISRequired)
+            {
             paxForm.Panel(0).Panel(5).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel("pax" + count + "c15").Textbox("passportnumber" + i).SetText(fakerObject.PassportNumber);
             paxForm.Panel(0).Panel(5).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel(0).Select("issuingcountry" + i).ClickItem(fakerObject.Country);
             paxForm.Panel(0).Panel(5).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel("pax" + count + "c17").Select("Nationality" + i).ClickItem(fakerObject.Country);
             paxForm.Panel(0).Panel(5).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(1).Panel(0).Panel("pax" + count + "c18").Select("adultPPExpiryDay" + i).ClickItem(fakerObject.PPExpiryDay);
             paxForm.Panel(0).Panel(5).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(2).Panel("pax" + count + "c19").Select("adultPPExpiryMonth" + i).ClickItem(fakerObject.PPExpiryMonth);
             paxForm.Panel(0).Panel(5).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c20").Select("adultPPExpiryYear" + i).ClickItem(fakerObject.PPExpiryYear);
+            }
         }
         else {
             paxForm.Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("pax" + count + "c7").Select("adultDOBDay" + i).ClickItem(fakerObject.DOBDay);
             paxForm.Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel("pax" + count + "c8").Select("adultDOBMonth" + i).ClickItem(fakerObject.DOBMonth);
             paxForm.Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c9").Select("adultDOBYear" + i).ClickItem(fakerObject.DOBYear);
+            if(isAPISRequired)
+            {
             paxForm.Panel(0).Panel(3).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel("pax" + count + "c15").Textbox("passportnumber" + i).SetText(fakerObject.PassportNumber);
             paxForm.Panel(0).Panel(3).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel(0).Select("issuingcountry" + i).ClickItem(fakerObject.Country);
             paxForm.Panel(0).Panel(3).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel("pax" + count + "c17").Select("Nationality" + i).ClickItem(fakerObject.Country);
             paxForm.Panel(0).Panel(3).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(1).Panel(0).Panel("pax" + count + "c18").Select("adultPPExpiryDay" + i).ClickItem(fakerObject.PPExpiryDay);
             paxForm.Panel(0).Panel(3).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(2).Panel("pax" + count + "c19").Select("adultPPExpiryMonth" + i).ClickItem(fakerObject.PPExpiryMonth);
             paxForm.Panel(0).Panel(3).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c20").Select("adultPPExpiryYear" + i).ClickItem(fakerObject.PPExpiryYear);
+            }
         }
         count++;
     }
@@ -93,12 +98,15 @@ function generateTestData(config) {
         childrenForm.Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("pax" + count + "c5").Select("cDOBDay" + i).ClickItem(fakerObject.DOBDay);
         childrenForm.Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel("pax" + count + "c6").Select("cDOBMonth" + i).ClickItem(fakerObject.DOBMonth);
         childrenForm.Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c7").Select("cDOBYear" + i).ClickItem(fakerObject.DOBYear);
+        if(isAPISRequired)
+            {
         childrenForm.Panel(0).Panel(4).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Textbox("pax" + count + "c8").SetText(fakerObject.PassportNumber);
         childrenForm.Panel(0).Panel(4).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel("pax" + count + "c9").Select("cissuingcountry" + i).ClickItem(fakerObject.Country);
         childrenForm.Panel(0).Panel(4).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel("pax" + count + "c10").Select("cNationality" + i).ClickItem(fakerObject.Country);
         childrenForm.Panel(0).Panel(4).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(1).Panel(0).Panel("pax" + count + "c11").Select("childPPExpiryDay" + i).ClickItem(fakerObject.PPExpiryDay);
         childrenForm.Panel(0).Panel(4).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(2).Panel(0).Select("childPPExpiryMonth" + i).ClickItem(fakerObject.PPExpiryMonth);
         childrenForm.Panel(0).Panel(4).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c13").Select("childPPExpiryYear" + i).ClickItem(fakerObject.PPExpiryYear);
+        }
         count++;
     }
     
@@ -116,12 +124,15 @@ function generateTestData(config) {
         infantForm.Panel(0).Panel(3).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("pax" + count + "c6").Select("infantDOBDay" + i).ClickItem(fakerObject.DOBDay);
         infantForm.Panel(0).Panel(3).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel("pax" + count + "c7").Select("infantDOBMonth" + i).ClickItem(fakerObject.DOBMonth);
         infantForm.Panel(0).Panel(3).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c8").Select("infantDOBYear" + i).ClickItem(fakerObject.DOBYear);
+        if(isAPISRequired)
+            {
         infantForm.Panel(0).Panel(5).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Textbox("pax" + count + "c9").SetText(fakerObject.PassportNumber);
         infantForm.Panel(0).Panel(5).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel(0).Select("pax" + count + "c10").ClickItem(fakerObject.Country);
         infantForm.Panel(0).Panel(5).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(1).Panel("pax" + count + "c11").Select("iNationality" + i).ClickItem(fakerObject.Country);
         infantForm.Panel(0).Panel(5).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(1).Panel(0).Panel("pax" + count + "c12").Select("infantPPExpiryDay" + i).ClickItem(fakerObject.PPExpiryDay);
         infantForm.Panel(0).Panel(5).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(2).Panel("pax" + count + "c13").Select("infantPPExpiryMonth" + i).ClickItem(fakerObject.PPExpiryMonth);
         infantForm.Panel(0).Panel(5).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(3).Panel("pax" + count + "c14").Select("infantPPExpiryYear" + i).ClickItem(fakerObject.PPExpiryYear);
+        }
         count++;
     }
     
