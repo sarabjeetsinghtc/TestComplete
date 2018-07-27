@@ -118,6 +118,9 @@
 		<child name="APIS" key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="APIS.js" />
 		</child>
+		<child name="Unit3" key="{0D0AA560-A870-487D-AF18-F06D9B28C8B9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Unit3.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="Utility" description="A logical folder that is used to organize project items and elements." moniker="">

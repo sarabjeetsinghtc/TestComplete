@@ -61,7 +61,47 @@ function OffloadPopUp(){
           aqUtils.Delay(2000);
 }
 
+function UpdateAPISDetail(paxList){
+  var paxListControl = HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "passengerList", 100);
+  for(var i=0; i<paxList.length; i++)
+  {
+  if(i!=0)
+  {
+  Common.SafeClickObject(paxListControl.WPFObject("ListBoxItem", "", i+1), 5)
+  }
+  //PropArray = new Array("WPFControlName", "Enabled");
+  //ValuesArray = new Array("TravelDocumentType", true);
+  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "TravelDocumentType", 100), 1);
+  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "TypeOfPassport", 100), 1);
+  Common.SafeKeys(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DocNumber", 100), 10, paxList[i].PassportNumber);
+  HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DocumentExpDate", 100).Keys("22/07/2022");
+  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "CountryOfResidence", 100), 10);
+  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "Nationality", 100), 10);
+ // Common.SafeKeys(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DateOfBirth", 100), 10, "22/07/1991");
+ }
+}
 
+function ReassociateInfantPassenger(){
+           Common.WaitForObject(HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "CheckinSelectedPaxView", 1000).Find("WPFControlName","passengerList",1000),15);
+           var PaxList = HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "CheckinSelectedPaxView", 1000).Find("WPFControlName","passengerList",1000);
+           Log.Message(PaxList.wItemCount);
+           for(var i=1;i<PaxList.wItemCount+1;i++){
+                    var Passenger = PaxList.WPFObject("ListBoxItem", "", i);
+                    Passenger.Click();
+                    if(Passenger.WPFObject("Grid", "", 1).WPFObject("Grid", "", 2).WPFObject("DockPanel", "", 1).WPFObject("StackPanel", "", 1).WPFObject("Image", "", 3).VisibleOnScreen){
+                            Passenger.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("paxName").Click();
+                            break;
+                    } 
+            }            
+            Common.SafeClickObject(Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("InfantDeselectSelectAssociatePassenger", "", 1).Find("WPFControlName","ComboBoxToggle",50),20);          
+            aqUtils.Delay(2000);
+            var RestOfAdultPax = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("InfantDeselectSelectAssociatePassenger", "", 1).Find("WPFControlName","listItems",100);
+            Log.Message(RestOfAdultPax.WItemCount);
+            var Pax1 = RestOfAdultPax.WPFObject("ListBoxItem", "", 1);
+            Log.Message(Pax1.WPFObject("StackPanel", "", 1).WPFObject("TextBlock", "*", 1).WPFControlText);
+            Common.SafeClickObject(Pax1.WPFObject("StackPanel", "", 1).WPFObject("RadioButton", "", 1),5);
+            Common.SafeClickObject(Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("InfantDeselectSelectAssociatePassenger", "", 1).Find("WPFControlText","Proceed",50),10);              
+}
 
 module.exports.IsBasicScreenDisplayed = IsBasicScreenDisplayed;
 module.exports.NavigateToAdvancedScreen = NavigateToAdvancedScreen;
@@ -71,3 +111,5 @@ module.exports.GetSeatNumOfCheckedInPassengers= GetSeatNumOfCheckedInPassengers;
 module.exports.NavigateToSeatInformation = NavigateToSeatInformation;
 module.exports.NavigateToBaggageInformation = NavigateToBaggageInformation;
 module.exports.OffloadPopUp = OffloadPopUp;
+module.exports.UpdateAPISDetail = UpdateAPISDetail;
+module.exports.ReassociateInfantPassenger = ReassociateInfantPassenger;
