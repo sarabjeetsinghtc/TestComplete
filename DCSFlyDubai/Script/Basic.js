@@ -26,8 +26,8 @@ function WalkThroughTabsUnderBasic(){
 }
 
 function CheckPassengersIn(){
-            Common.SafeClickObject(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("CheckinMainViewContent").WPFObject("TopWindow").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("StackPanel", "", 3).WPFObject("Button", "Check In", 3),5);
-            Common.WaitForObject(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("CheckinMainViewContent").WPFObject("TopWindow").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("StackPanel", "", 3).WPFObject("Button", "Boarding Pass Print", 2),10);
+            Common.SafeClickObject(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("CheckinMainViewContent").WPFObject("TopWindow").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("StackPanel", "", 3).WPFObject("Button", "Check In", 3),50);
+            Common.WaitForObject(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("CheckinMainViewContent").WPFObject("TopWindow").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("StackPanel", "", 3).WPFObject("Button", "Boarding Pass Print", 2),20);
 }                 
 
 function GetSeatNumOfCheckedInPassengers(){
@@ -65,20 +65,17 @@ function UpdateAPISDetail(paxList){
   var paxListControl = HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "passengerList", 100);
   for(var i=0; i<paxList.length; i++)
   {
-  if(i!=0)
-  {
-  Common.SafeClickObject(paxListControl.WPFObject("ListBoxItem", "", i+1), 5)
-  }
-  //PropArray = new Array("WPFControlName", "Enabled");
-  //ValuesArray = new Array("TravelDocumentType", true);
-  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "TravelDocumentType", 100), 1);
-  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "TypeOfPassport", 100), 1);
-  Common.SafeKeys(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DocNumber", 100), 10, paxList[i].PassportNumber);
-  HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DocumentExpDate", 100).Keys("22/07/2022");
-  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "CountryOfResidence", 100), 10);
-  Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "Nationality", 100), 10);
- // Common.SafeKeys(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DateOfBirth", 100), 10, "22/07/1991");
- }
+    if(i!=0)
+    {
+      Common.SafeClickObject(paxListControl.WPFObject("ListBoxItem", "", i+1), 5)
+    }
+    Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "TravelDocumentType", 100), 1);
+    Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "TypeOfPassport", 100), 1);
+    Common.SafeKeys(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DocNumber", 100), 10, paxList[i].PassportNumber);
+    HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "DocumentExpDate", 100).Keys("22/07/2022");
+    Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "CountryOfResidence", 100), 10);
+    Common.SelectDropDownValue(HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "Nationality", 100), 10);
+   }
 }
 
 function ReassociateInfantPassenger(){
@@ -103,6 +100,23 @@ function ReassociateInfantPassenger(){
             Common.SafeClickObject(Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("InfantDeselectSelectAssociatePassenger", "", 1).Find("WPFControlText","Proceed",50),10);              
 }
 
+function IsOutofSequence()
+{
+  var outofSequenceControl = HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlText", "Out of Sequence", 100);
+  if(outofSequenceControl.Exists)
+  {
+    Log.Message("Navigated to out of sequence screen");
+  }
+            else{
+                   Log.Warning("Landed on unexpected page");
+            }
+}
+
+function NavigateToSpecificTab(TabIndex){
+          var Tabs = HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName","CheckinMainViewContent",20).WPFObject("TopWindow").Find("WPFControlName","basicTabsContent",10).WPFObject("BasicTab");
+          Common.SafeClickObject(Tabs.WPFObject("Grid", "", 1).WPFObject("tab").WPFObject("TabItem", "", TabIndex),10);
+}
+
 module.exports.IsBasicScreenDisplayed = IsBasicScreenDisplayed;
 module.exports.NavigateToAdvancedScreen = NavigateToAdvancedScreen;
 module.exports.WalkThroughTabsUnderBasic = WalkThroughTabsUnderBasic;
@@ -113,3 +127,5 @@ module.exports.NavigateToBaggageInformation = NavigateToBaggageInformation;
 module.exports.OffloadPopUp = OffloadPopUp;
 module.exports.UpdateAPISDetail = UpdateAPISDetail;
 module.exports.ReassociateInfantPassenger = ReassociateInfantPassenger;
+module.exports.IsOutofSequence = IsOutofSequence;
+module.exports.NavigateToSpecificTab =NavigateToSpecificTab;

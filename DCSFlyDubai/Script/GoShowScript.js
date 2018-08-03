@@ -1,0 +1,44 @@
+﻿var ReadCredentials = require("ReadCreds");
+var LaunchFlyDubai = require("LaunchFlyDubai");
+var Login = require("Login");
+var Common = require("Common");
+var HomePage = require("HomePage");
+var ReadDataFromTextFile = require("ReadDataFromTextFile");
+var CheckInScreen = require("CheckInScreen");
+var FlightControlDashboard = require("FlightControlDashboard");
+var FlightControlScreen = require("FlightControlScreen");
+var PassengerList = require("PassengerList");
+var Basic = require("Basic");
+var Advanced = require("Advanced");
+var FlightScreenYetToBoard = require("FlightScreenYetToBoard");
+var DynamicPaxGenericFaker = require("DynamicPaxGenericFaker");
+var BaggageInformation = require("BaggageInformation");
+var SeatInformation = require("SeatInformation");
+var BoardedPassengersList = require("BoardedPassengersList");
+
+function Check(){
+      LaunchFlyDubai.LaunchFlyDubaiDCSApp();
+      var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\config.txt");
+      var LoginDetails = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\DCSCredentials.txt");
+      var BookingData = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\TestData_A-001.txt");
+      var adult = 2, child=2, infant=1;
+      var FlightNum = BookingData.flightSegments[BookingData.flightSegments.length - 1].flightNum+ "/" + BookingData.flightDate;
+      Login.AdvancedLogin(LoginDetails.Username,LoginDetails.Password,LoginDetails.Role,LoginDetails.Environment,LoginDetails.Station);
+     HomePage.NavigateToFCM();
+      CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
+      FlightControlScreen.ChangeFlightStatus("FO");
+      aqUtils.Delay(2000);
+      HomePage.NavigateToHomePage();       
+      aqUtils.Delay(2000);
+       HomePage.NavigateToCheckInScreen();
+       aqUtils.Delay(2000);
+       CheckInScreen.SearchFlightOrPassenger(false,FlightNum,1);
+       CheckInScreen.AddNewPax(adult, child, infant);
+       CheckInScreen.FillNewPaxDetails(adult, child, infant, config);
+        aqUtils.Delay(2000);   
+       Basic.CheckPassengersIn();
+       var Seats = Basic.GetSeatNumOfCheckedInPassengers();
+       HomePage.NavigateToBoardingScreen();
+       CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
+       FlightScreenYetToBoard.BoardPax(Common.GetSeatOrSeqNumbersFromArray(Seats));
+}

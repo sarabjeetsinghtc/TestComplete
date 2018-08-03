@@ -7,7 +7,7 @@ function IsYetToBoardScreenDisplayed(FlightNum){
 }
 
 function BoardPax(PaxDetails){  
-        Common.EnterTextInTextBox(YetToBoard.SeatSeqNumbers,15,PaxDetails);
+        Common.SafeSetText(YetToBoard.SeatSeqNumbers,15,PaxDetails);
         YetToBoard.WPFObject("ModuleContent").WPFObject("BoardingView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ContentControl", "", 1).WPFObject("BoardingPax").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("GroupBox", "", 2).WPFObject("BoardButton").Click();           
         aqUtils.Delay(1000);
         if(Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.Exists==true){
@@ -51,19 +51,21 @@ function SearchPassenger(Seat){
       }
 }      
 
-function PassengerOffload(Action){
-      //var Paxgrid = YetToBoard.Border.Grid.BoardingPaxListGrid;
-     // Paxgrid.WPFObject("DataGridRow", "", 1).ClickR();
-     // aqUtils.Delay(1000);
-      
+function OffloadPopUp(){
+      var Paxgrid = YetToBoard.Border.Grid.BoardingPaxListGrid;
+      Paxgrid.WPFObject("DataGridRow", "", 1).ClickR();
+      aqUtils.Delay(1000);
+}
+
+function PassengerOffload(Action){      
       switch(Action){
             case "Offload":
                   Common.SafeClickObject(Aliases.flydubai_DCS_UI.WPFObject("HwndSource: PopupRoot", "").WPFObject("PopupRoot", "", 1).WPFObject("Decorator", "", 1).WPFObject("NonLogicalAdornerDecorator", "", 1).WPFObject("ContextMenu", "", 1).WPFObject("MenuItem", "Offload", 1),4);
                   break;
-            case "Offload to Standby":
+            case "OffloadToStandby":
                   Common.SafeClickObject(Aliases.flydubai_DCS_UI.WPFObject("HwndSource: PopupRoot", "").WPFObject("PopupRoot", "", 1).WPFObject("Decorator", "", 1).WPFObject("NonLogicalAdornerDecorator", "", 1).WPFObject("ContextMenu", "", 1).WPFObject("MenuItem", "Offload to Standby", 2),4);
                   break;
-            case "Offload Onwards":
+            case "OffloadOnwards":
                   Common.SafeClickObject(Aliases.flydubai_DCS_UI.WPFObject("HwndSource: PopupRoot", "").WPFObject("PopupRoot", "", 1).WPFObject("Decorator", "", 1).WPFObject("NonLogicalAdornerDecorator", "", 1).WPFObject("ContextMenu", "", 1).WPFObject("MenuItem", "Offload Onwards", 3),4);
                   break;
             default :
@@ -84,7 +86,7 @@ function PassengerOffload(Action){
                 SelectAllPaxForOffloadOrOffloadToStandby();
                 Common.SafeClickObject(Popup.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentControl", "", 1).WPFObject("OffloadPassengerUserControl").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Border", "", 3).WPFObject("Grid", "",1).WPFObject("StackPanel", "", 2).WPFObject("Button", "Offload to standby", 2),4);
        }     
-}        
+}         
 
 function SelectAllPaxForOffloadOrOffloadToStandby(){ 
       var Popup = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow;
@@ -97,6 +99,24 @@ function SelectAllPaxForOffloadOrOffloadToStandby(){
       }      
 }
 
+function ReadBoardingRestrictions(){
+      Common.WaitForObject(Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow,25);
+      var Restrictions = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.WPFObject("Grid", "", 1).Find("WPFControlName","BoardingCheckpointControl",100).Find("WPFControlName","CheckpointItems",100).FindAll("ClrClassName","ListViewItem",10);
+      Log.Message(Restrictions.length);
+      for(var i=0;i<Restrictions.length;i++){
+            var Restriction = Restrictions[i].WPFObject("panel").Find("WPFControlName","checkItem",20).WPFObject("grid").WPFObject("TextBlock", "*", 1);
+            if(aqString.Find(Restriction.WPFControlText,"excess bagage")){
+                Log.Warning("The passenger(s) has excess baggage restriction");
+                break;
+            }
+            else if(aqString.Find(Restriction.WPFControlText,"outstanding payment")){
+                Log.Warning("The passenger(s) has outstanding payment restriction");
+                break;
+            }
+      }
+      Common.SafeClickObject(Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow.WPFObject("Grid", "", 1).Find("WPFControlName","BoardingCheckpointControl",100).Find(new Array("ClrClassName","WPFControlText"), new Array("Button","Cancel"),50),5); 
+}
+
 module.exports.BoardPax = BoardPax;
 module.exports.VerifySeccessfulBoarding = VerifySeccessfulBoarding;
 module.exports.CheckBoardingRestrictionPopUp = CheckBoardingRestrictionPopUp;
@@ -105,3 +125,5 @@ module.exports.YetToBoard =YetToBoard;
 module.exports.NavigateToBoardedTab = NavigateToBoardedTab;
 module.exports.SearchPassenger = SearchPassenger;
 module.exports.PassengerOffload = PassengerOffload;
+module.exports.ReadBoardingRestrictions = ReadBoardingRestrictions;
+module.exports.OffloadPopUp = OffloadPopUp;
