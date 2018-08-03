@@ -118,8 +118,32 @@
 		<child name="APIS" key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="APIS.js" />
 		</child>
-		<child name="Unit3" key="{0D0AA560-A870-487D-AF18-F06D9B28C8B9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
-			<data path="Unit3.js" />
+		<child name="ConnectingFlightScript" key="{17BE676E-BBFB-49A7-9A7B-6DA6E90C3111}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ConnectingFlightScript.js" />
+		</child>
+		<child name="GoShowScript" key="{108C70BB-8218-484A-80EB-509A90D5E026}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="GoShowScript.js" />
+		</child>
+		<child name="ExtraBaggage" key="{844A5BE3-AE43-4ADE-BADC-E8DE85E4A355}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ExtraBaggage.js" />
+		</child>
+		<child name="AddAncillaryServices" key="{F797EC49-6F60-45FC-B42B-B04A122E6D9D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="AddAncillaryServices.js" />
+		</child>
+		<child name="AncillarySales" key="{14CE1727-6010-4B50-8974-B6E5EF60AA73}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="AncillarySales.js" />
+		</child>
+		<child name="PaymentDetails" key="{2BF30DB6-C6BE-4F73-91B9-09F1FE990C55}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PaymentDetails.js" />
+		</child>
+		<child name="SeatBaggageAncillary" key="{7A6642B2-C558-483A-9BBE-C25DB49062F2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SeatBaggageAncillary.js" />
+		</child>
+		<child name="CheckPaxSSRComments" key="{CF4A07D6-882A-4EA9-9A11-34B9840D99CB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="CheckPaxSSRComments.js" />
+		</child>
+		<child name="SSRAndComments" key="{E90383DD-536B-4809-B06A-20F6745AEEA4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SSRAndComments.js" />
 		</child>
 	</children>
 	<folders>
@@ -139,6 +163,9 @@
 						<ref key="{CA81FC1D-04C3-44C9-B452-32608BBA9E2A}" />
 						<ref key="{E85C4235-F821-4B83-9632-7022D29C6F13}" />
 						<ref key="{28693939-58C7-43D6-8557-5C0AD0FFFAF9}" />
+						<ref key="{14CE1727-6010-4B50-8974-B6E5EF60AA73}" />
+						<ref key="{2BF30DB6-C6BE-4F73-91B9-09F1FE990C55}" />
+						<ref key="{E90383DD-536B-4809-B06A-20F6745AEEA4}" />
 					</references>
 				</folder>
 				<folder caption="Common" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -174,6 +201,14 @@
 						<ref key="{ECEFA373-51A4-47A3-815D-3554E7C931DD}" />
 					</references>
 				</folder>
+				<folder caption="DemoScripts" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{7A6642B2-C558-483A-9BBE-C25DB49062F2}" />
+						<ref key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" />
+						<ref key="{17BE676E-BBFB-49A7-9A7B-6DA6E90C3111}" />
+						<ref key="{108C70BB-8218-484A-80EB-509A90D5E026}" />
+					</references>
+				</folder>
 			</folders>
 			<references>
 				<ref key="{4EF1F613-40BE-4779-A96A-30A5C2E2781F}" />
@@ -189,7 +224,9 @@
 				<ref key="{C630BF24-EE12-44D2-800A-099FC1DE3180}" />
 				<ref key="{F76D3716-3354-4A2A-B06B-729F59369D74}" />
 				<ref key="{57C93223-8F20-46A2-BEBA-6CCA672CE783}" />
-				<ref key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" />
+				<ref key="{844A5BE3-AE43-4ADE-BADC-E8DE85E4A355}" />
+				<ref key="{F797EC49-6F60-45FC-B42B-B04A122E6D9D}" />
+				<ref key="{CF4A07D6-882A-4EA9-9A11-34B9840D99CB}" />
 			</references>
 		</folder>
 		<folder caption="Data" description="A logical folder that is used to organize project items and elements." moniker="">

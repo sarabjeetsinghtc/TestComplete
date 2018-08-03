@@ -16,8 +16,8 @@ var BaggageInformation = require("BaggageInformation");
 var SeatInformation = require("SeatInformation");
 var BoardedPassengersList = require("BoardedPassengersList");
 
-function Check(){
-      var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\config.txt");
+function CheckAPIS(){
+     var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\configapis.txt");
      DynamicPaxGenericFaker.generateTestData(config, false);
       LaunchFlyDubai.LaunchFlyDubaiDCSApp();
       var LoginDetails = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\DCSCredentials.txt");
@@ -38,6 +38,7 @@ function Check(){
        Basic.IsBasicScreenDisplayed();
        Basic.UpdateAPISDetail(BookingData.paxList);
        Basic.ReassociateInfantPassenger();
+       aqUtils.Delay(4000);
        HomePage.NavigateToHomePage();
         aqUtils.Delay(2000);
        HomePage.NavigateToCheckInScreen();
@@ -45,32 +46,17 @@ function Check(){
        CheckInScreen.SearchFlightOrPassenger(false,FlightNum,1);
        PassengerList.SelectPassengerFromTheList(BookingData.PNR);
        Basic.IsBasicScreenDisplayed();
-       Basic.NavigateToSeatInformation();
-       SeatInformation.SelectSeatFromSeatMap();
-       Basic.NavigateToBaggageInformation();
-       BaggageInformation.AddBaggage(1,10);
-       //Basic.WalkThroughTabsUnderBasic();
-       //Basic.NavigateToAdvancedScreen();
-       //Advanced.WalkThroughTabsUnderAdvanced();
-       //Advanced.NavigateToBasicScreen();
-       //Basic.NavigateToBaggageInformation();
-       //BaggageInformation.AddBaggage(1,10);
-       //Basic.NavigateToSeatInformation();
-       //SeatInformation.SelectSeatFromSeatMap();
        Basic.CheckPassengersIn();
-       //Basic.OffloadPopUp();
-       //FlightScreenYetToBoard.PassengerOffload("Offload");
+       var Seats = Basic.GetSeatNumOfCheckedInPassengers();
         aqUtils.Delay(5000);
-      // var Seats = Basic.GetSeatNumOfCheckedInPassengers();
-       //HomePage.NavigateToHomePage();
-       //HomePage.NavigateToBoardingScreen();
-       //CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
-       //FlightScreenYetToBoard.IsYetToBoardScreenDisplayed(FlightNum);
-       //FlightScreenYetToBoard.BoardPax(Common.GetSeatOrSeqNumbersFromArray(Seats));
-      // FlightScreenYetToBoard.VerifySeccessfulBoarding();
-       //FlightScreenYetToBoard.NavigateToBoardedTab();
-      // BoardedPassengersList.DeboardPax(Common.GetSeatOrSeqNumbersFromArray(Seats));       
-       //BoardedPassengersList.VerifyDeboardSuccessMessage();
-      // BoardedPassengersList.NavigateToYetToBoardTab();
-       //FlightScreenYetToBoard.PerformOffloadOrOffloadToStandby(Seats,"Offload");
+        HomePage.NavigateToBoardingScreen();
+        CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
+        var SeatString = Common.GetSeatOrSeqNumbersFromArray(Seats);
+        FlightScreenYetToBoard.BoardPax(SeatString);
+        FlightScreenYetToBoard.NavigateToBoardedTab();
+        BoardedPassengersList.DeboardPax(SeatString);
+        BoardedPassengersList.NavigateToYetToBoardTab();
+        FlightScreenYetToBoard.SearchPassenger(Seats[0]);
+        FlightScreenYetToBoard.OffloadPopUp();
+        FlightScreenYetToBoard.PassengerOffload("Offload");
 }

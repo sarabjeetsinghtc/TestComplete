@@ -3,7 +3,7 @@ var PassengerList = require("PassengerList");
 var BoardedTab = Aliases.flydubai_DCS_UI.HwndSource_DCSMainWindow.DCSMainWindow.ContentGrid;
 
 function DeboardPax(PaxDetails){
-        Common.EnterTextInTextBox(BoardedTab.WPFObject("ModuleContent").WPFObject("BoardingView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ContentControl", "", 1).WPFObject("BoardingPax").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 2).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("GroupBox", "", 1).WPFObject("TextBox", "", 1),10,PaxDetails);
+        Common.SafeSetText(BoardedTab.WPFObject("ModuleContent").WPFObject("BoardingView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ContentControl", "", 1).WPFObject("BoardingPax").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 2).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("GroupBox", "", 1).WPFObject("TextBox", "", 1),10,PaxDetails);
         BoardedTab.WPFObject("ModuleContent").WPFObject("BoardingView", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("ContentGrid").WPFObject("ContentControl", "", 1).WPFObject("BoardingPax").WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Grid", "", 2).WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("GroupBox", "", 2).WPFObject("DeBoardButton").Click();
 }
 
