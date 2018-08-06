@@ -145,6 +145,9 @@
 		<child name="SSRAndComments" key="{E90383DD-536B-4809-B06A-20F6745AEEA4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="SSRAndComments.js" />
 		</child>
+		<child name="TestPayment" key="{4E45B0C2-F6F1-4FAA-8FE5-0B77A394E62D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TestPayment.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="Utility" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -207,6 +210,7 @@
 						<ref key="{A096E90C-844D-476D-8416-DCB80CCB36E0}" />
 						<ref key="{17BE676E-BBFB-49A7-9A7B-6DA6E90C3111}" />
 						<ref key="{108C70BB-8218-484A-80EB-509A90D5E026}" />
+						<ref key="{4E45B0C2-F6F1-4FAA-8FE5-0B77A394E62D}" />
 					</references>
 				</folder>
 			</folders>

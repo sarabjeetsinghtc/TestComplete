@@ -17,7 +17,7 @@ var SeatInformation = require("SeatInformation");
 var BoardedPassengersList = require("BoardedPassengersList");
 var SSRAndComments = require("SSRAndComments");
 
-function CheckSSRAndComments(){
+function CheckClearingManualGateComments(){
        //var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\config.txt");
        //DynamicPaxGenericFaker.generateTestData(config, true);
        LaunchFlyDubai.LaunchFlyDubaiDCSApp();
@@ -26,6 +26,7 @@ function CheckSSRAndComments(){
        
        var FlightNum = BookingData.flightSegments[BookingData.flightSegments.length - 1].flightNum+ "/" + BookingData.flightDate;
        Login.AdvancedLogin(LoginDetails.Username,LoginDetails.Password,LoginDetails.Role,LoginDetails.Environment,LoginDetails.Station);
+       
        HomePage.NavigateToCheckInScreen();
        aqUtils.Delay(2000);
        CheckInScreen.SearchFlightOrPassenger(false,FlightNum,1);
@@ -43,11 +44,13 @@ function CheckSSRAndComments(){
        SSRAndComments.ToggleReservationCommentsSection();  
        SSRAndComments.ToggleReservationCommentsSection();
        SSRAndComments.AddCommentToSection();
-       SSRAndComments.ToggleCheckInCommentsSection();
+       SSRAndComments.ToggleGateCommentsSection();
        aqUtils.Delay(1000);
-       SSRAndComments.ToggleCheckInCommentsSection();
-       aqUtils.Delay(4000);
-
-      
+       SSRAndComments.ToggleGateCommentsSection();
+       aqUtils.Delay(1000);
+       HomePage.NavigateToHomePage();
+       HomePage.NavigateToBoardingScreen();
+       CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
+       FlightScreenYetToBoard.IsYetToBoardScreenDisplayed(FlightNum);
+       SSRAndComments.ClearManualGateComments(BookingData.paxList[0].LastName);
 }
-
