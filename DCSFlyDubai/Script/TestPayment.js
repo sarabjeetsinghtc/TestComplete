@@ -21,6 +21,7 @@ var AncillarySales = require("AncillarySales");
 var PaymentDetails = require("PaymentDetails");
 
 
+
 function SeatBaggageAncillary(){
            var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\configseatbaggageancilliary.txt");
            DynamicPaxGenericFaker.generateTestData(config, true);
@@ -30,10 +31,10 @@ function SeatBaggageAncillary(){
        
            var FlightNum = BookingData.flightNum + "/" + BookingData.flightDate;
            Login.AdvancedLogin(LoginDetails.Username,LoginDetails.Password,LoginDetails.Role,LoginDetails.Environment,LoginDetails.Station);
-           HomePage.NavigateToFCM();
-           CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
-           FlightControlScreen.ChangeFlightStatus("FO");
-           aqUtils.Delay(2000);
+          HomePage.NavigateToFCM();
+          CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
+          FlightControlScreen.ChangeFlightStatus("FO");
+          aqUtils.Delay(2000);
            HomePage.NavigateToHomePage();       
            aqUtils.Delay(2000);
            HomePage.NavigateToCheckInScreen();
@@ -41,29 +42,27 @@ function SeatBaggageAncillary(){
            CheckInScreen.SearchFlightOrPassenger(false,FlightNum,1);
            PassengerList.SelectPassengerFromTheList(BookingData.PNR);
            Basic.IsBasicScreenDisplayed();
-           Basic.NavigateToSpecificTab(3);
+          Basic.NavigateToSpecificTab(3);
            BaggageInformation.AddBaggage(2,100);
            Basic.NavigateToSpecificTab(4);
-           SeatInformation.IsSeatInformationDisplayed();
-           SeatInformation.SelectSeatFromSeatMap(); 
-           Basic.NavigateToAdvancedScreen();
+          SeatInformation.IsSeatInformationDisplayed();
+          SeatInformation.SelectSeatFromSeatMap(); 
+          Basic.NavigateToAdvancedScreen();
            Advanced.NavigateToSpecificTab(3);
            var ServicesAdded = AncillarySales.AddAncillaryServices();
            Advanced.NavigateToSpecificTab(6);
            PaymentDetails.VerifyAncillaryServicesAdded(ServicesAdded);
-           Basic.CheckPassengersIn();
-           var Seats = Basic.GetSeatNumOfCheckedInPassengers();           
-           HomePage.NavigateToBoardingScreen();
-           CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
-           Log.Message(Common.GetSeatOrSeqNumbersFromArray(Seats));
-           FlightScreenYetToBoard.BoardPax(Common.GetSeatOrSeqNumbersFromArray(Seats));
-           FlightScreenYetToBoard.ReadBoardingRestrictions();
-           HomePage.NavigateToHomePage();       
+          Basic.CheckPassengersIn();
+          var Seats = Basic.GetSeatNumOfCheckedInPassengers();
+          Log.Message(Seats);
            aqUtils.Delay(2000);
-           HomePage.NavigateToCheckInScreen();
-           aqUtils.Delay(2000);
-           CheckInScreen.SearchFlightOrPassenger(false,FlightNum,1);
-           PassengerList.SelectPassengerFromTheList(BookingData.PNR);
-           Basic.IsBasicScreenDisplayed();
+           Basic.InitiatePayment();
+           PaymentDetails.ProcessPaymentPopup();
+           Basic.ClosePaymentPopup();
+           //HomePage.NavigateToBoardingScreen();
+           //CheckInScreen.SearchFlightOrPassenger(true,FlightNum);
+           //Log.Message(Common.GetSeatOrSeqNumbersFromArray(Seats));
+           //FlightScreenYetToBoard.BoardPax(Common.GetSeatOrSeqNumbersFromArray(Seats));
+           //FlightScreenYetToBoard.ReadBoardingRestrictions();
            
 }

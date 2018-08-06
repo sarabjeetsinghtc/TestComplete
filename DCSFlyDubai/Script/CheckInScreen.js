@@ -3,6 +3,7 @@ var FlightList = require("FlightList");
 var MockData = require("DynamicPaxgenericFaker");
 var HomePage = Aliases.flydubai_DCS_UI.HwndSource_DCSMainWindow.DCSMainWindow;
 var Popup = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow;
+var Payment = require("PaymentDetails");
 
 function IsCheckInScreenDisplayed(){
       var BreadcrumbCheckIn = HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Logo").WPFObject("ItemsControl", "", 1).WPFObject("ContentPresenter", "", 1).WPFObject("StackPanel", "", 1).WPFObject("btnBreadcumb");
@@ -77,7 +78,7 @@ function AddNewPax(adult, child, infant)
 function FillNewPaxDetails(adult, child, infant, config)
 {
   var mockObject ={}, paxCount = adult + child + infant;
-  var selectedEnvironment = config[config.selectedEnv];
+  //var selectedEnvironment = config[config.selectedEnv];
   var paxListControl = HomePage.ContentGrid.WPFObject("ModuleContent").WPFObject("CheckinMainView", "", 1).Find("WPFControlName", "passengerList", 100);
   var InfoOfPaxContent =  HomePage.ContentGrid.Find("WPFControlName", "InformationOfPaxContent", 100);
   for(var i=0; i<paxCount; i++)
@@ -121,16 +122,8 @@ function FillNewPaxDetails(adult, child, infant, config)
     aqUtils.Delay(3000);
     Common.SafeClickObject(HomePage.Find("WPFControlName", "CheckinMainViewContent", 100).Find("WPFControlText", "Proceed with payment", 100),25)
     Common.SafeClickObject(Popup.Find("WPFControlText", "Proceed", 100), 25);
-    
-    Common.SafeClickObject(Popup.Find("WPFControlName", "paymentView", 100).Find("WPFControlText",  "Voucher Reference", 100), 5);
-     Common.SafeSetText(Popup.Find("WPFControlName", "paymentView", 100).Find("WPFControlName",  "voucherReference", 100), 5, selectedEnvironment.Voucher);
-      Common.SafeSetText(Popup.Find("WPFControlName", "paymentView", 100).Find("WPFControlName",  "voucherPinNumber", 100), 5, selectedEnvironment.Pin);
-      Sys.Desktop.Keys("[Tab]");
-      Sys.Desktop.Keys("[Tab]");
-      Sys.Desktop.Keys("[Tab]");
-      Common.SafeClickObject(Popup.Find("WPFControlName", "paymentView", 100).Find("WPFControlText",  "Proceed", 100), 150);
-     Common.SafeClickObject(Popup.Find("WPFControlName", "paymentView", 100).Find("WPFControlText",  "Proceed with Checkin", 100), 100);
-     }
+    Payment.ProcessPaymentPopup();
+    }
 
 module.exports.SearchFlightOrPassenger = SearchFlightOrPassenger;
 module.exports.SelectSearchDropdown=SelectSearchDropdown;

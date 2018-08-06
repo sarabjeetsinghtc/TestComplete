@@ -1,6 +1,7 @@
 ﻿var Common = require("Common");
 var Advanced = require("Advanced");
 var HomePage = Aliases.flydubai_DCS_UI.HwndSource_DCSMainWindow.DCSMainWindow;
+var Popup = Aliases.flydubai_DCS_UI.HwndSource_popupWindow.popupWindow;
 
 function IsBasicScreenDisplayed(){
             var BreadcrumbBasic = HomePage.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Logo").WPFObject("ItemsControl", "", 1).WPFObject("ContentPresenter", "", 3).WPFObject("StackPanel", "", 1).WPFObject("btnBreadcumb");
@@ -117,6 +118,14 @@ function NavigateToSpecificTab(TabIndex){
           Common.SafeClickObject(Tabs.WPFObject("Grid", "", 1).WPFObject("tab").WPFObject("TabItem", "", TabIndex),10);
 }
 
+function InitiatePayment(){
+  var PaymentControl = HomePage.ContentGrid.Find("WPFControlName", "CheckinMainViewContent", 100).Find("ClrClassName", "GroupBox", 100).Find("WPFControlText", "Payment",100);
+  Common.SafeClickObject(PaymentControl, 10);
+}
+
+function ClosePaymentPopup(){
+  Common.SafeClickObject(Popup.WPFObject("Grid", "", 1).WPFObject("Grid", "", 1).WPFObject("Border", "", 1).WPFObject("Grid", "", 1).WPFObject("Button", "", 1), 10)
+}
 module.exports.IsBasicScreenDisplayed = IsBasicScreenDisplayed;
 module.exports.NavigateToAdvancedScreen = NavigateToAdvancedScreen;
 module.exports.WalkThroughTabsUnderBasic = WalkThroughTabsUnderBasic;
@@ -129,3 +138,5 @@ module.exports.UpdateAPISDetail = UpdateAPISDetail;
 module.exports.ReassociateInfantPassenger = ReassociateInfantPassenger;
 module.exports.IsOutofSequence = IsOutofSequence;
 module.exports.NavigateToSpecificTab =NavigateToSpecificTab;
+module.exports.InitiatePayment=InitiatePayment;
+module.exports.ClosePaymentPopup = ClosePaymentPopup;
