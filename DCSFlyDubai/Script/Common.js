@@ -86,6 +86,13 @@ function GetSeatOrSeqNumbersFromArray(SeatArray){
    return s;
 }
 
+function GetGenericFilePath(){
+  if(ProjectSuite.Variables.FilePath.length<=0){
+    ProjectSuite.Variables.FilePath = aqFileSystem.GetFolderInfo(Project.Path).ParentFolder.Path + "Data\\";
+  }
+  return ProjectSuite.Variables.FilePath;
+}
+
 module.exports.IsObjectVisibleOnScreen = IsObjectVisibleOnScreen;
 module.exports.SafeSetText = SafeSetText;
 module.exports.SafeKeys = SafeKeys;
@@ -94,3 +101,4 @@ module.exports.SelectDropDownValue = SelectDropDownValue;
 module.exports.IsObjectVisibleOnScreen = IsObjectVisibleOnScreen;
 module.exports.WaitForObject = WaitForObject;
 module.exports.GetSeatOrSeqNumbersFromArray=GetSeatOrSeqNumbersFromArray;
+module.exports.GetGenericFilePath = GetGenericFilePath; 

@@ -18,9 +18,10 @@ var BoardedPassengersList = require("BoardedPassengersList");
 
 function Check(){
       LaunchFlyDubai.LaunchFlyDubaiDCSApp();
-      var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\config.txt");
-      var LoginDetails = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\DCSCredentials.txt");
-      var BookingData = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\TestData_A-001.txt");
+     var path = Common.GetGenericFilePath();
+     var config = ReadDataFromTextFile.ReadData(path + "config.txt");
+	 var LoginDetails = ReadDataFromTextFile.ReadData(path + "DCSCredentials.txt");
+      var BookingData = ReadDataFromTextFile.ReadData(path + "TestData_A-001.txt");
       var adult = 2, child=2, infant=1;
       var FlightNum = BookingData.flightSegments[BookingData.flightSegments.length - 1].flightNum+ "/" + BookingData.flightDate;
       Login.AdvancedLogin(LoginDetails.Username,LoginDetails.Password,LoginDetails.Role,LoginDetails.Environment,LoginDetails.Station);

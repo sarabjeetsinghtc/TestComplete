@@ -17,11 +17,12 @@ var SeatInformation = require("SeatInformation");
 var BoardedPassengersList = require("BoardedPassengersList");
 
 function CheckAPIS(){
-     var config = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\configapis.txt");
+     var path = Common.GetGenericFilePath();
+     var config = ReadDataFromTextFile.ReadData(path + "configapis.txt");
      DynamicPaxGenericFaker.generateTestData(config, false);
-      LaunchFlyDubai.LaunchFlyDubaiDCSApp();
-      var LoginDetails = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\DCSCredentials.txt");
-      var BookingData = ReadDataFromTextFile.ReadData("E:\\Automation\\Automation\\Automation\\Data\\TestData_A-001.txt");
+     // LaunchFlyDubai.LaunchFlyDubaiDCSApp();
+      var LoginDetails = ReadDataFromTextFile.ReadData(path + "DCSCredentials.txt");
+      var BookingData = ReadDataFromTextFile.ReadData(path + "TestData_A-001.txt");
        
       var FlightNum = BookingData.flightNum + "/" + BookingData.flightDate;
       Login.AdvancedLogin(LoginDetails.Username,LoginDetails.Password,LoginDetails.Role,LoginDetails.Environment,LoginDetails.Station);
