@@ -1,5 +1,6 @@
 ﻿var faker = require("faker");
 var formMonths = ["1 Jan", "2 Feb", "3 Mar", "4 Apr", "5 May", "6 Jun", "7 Jul", "8 Aug", "9 Sep", "10 Oct", "11 Nov", "12 Dec"];
+var Common = require("Common");
 
 function generateTestData(config, isAPISRequired) {
     var bookingPage, flightSelectSection, paxFormPage, paxFormSection, paxForm, optionalExtraPage, paymentPage;
@@ -10,7 +11,8 @@ function generateTestData(config, isAPISRequired) {
     var bookingObject = {
         paxList: [{}]
     };
-
+    var path = Common.GetGenericFilePath();
+        
     //Gets count of pax category based on axbycz notation where x represents adults, y represents children and z represents infants 
     adults = parseInt(paxCount[1]);
     children = parseInt(paxCount[3]);
@@ -26,13 +28,13 @@ function generateTestData(config, isAPISRequired) {
     aqUtils.Delay(4000);
     flightSelectSection = bookingPage.panelSelectionDetailsHolder;
     var flightSelectCommon = flightSelectSection.Panel(0).Panel(6).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
-    flightSelectCommon.Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Click();
+    flightSelectCommon.Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Click();
     var stops = parseInt(flightSelectSection.Panel(0).Panel(6).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(1).Panel(0).Panel(0).outerText.split(":")[1].trim());
     for (var i = 0; i <= stops; i++) {
         segment = {};
         segment.origin = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(0).Panel(0).Panel(0).TextNode(0).outerText;
         segment.destination = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(0).Panel(2).Panel(0).TextNode(0).outerText;
-        segment.flightNum = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(2).Panel(1).Panel(0).TextNode(2).outerText.split("(")[0].trim();
+        segment.flightNum = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(2).Panel(1).Panel(0).outerText.split("(")[0].trim();
         bookingObject.flightSegments[i] = segment;
     }
 
@@ -195,9 +197,8 @@ function generateTestData(config, isAPISRequired) {
     bookingObject.flightNum = bookingObject.flightSegments[0].flightNum;
     bookingObject.flightDate = formattedDate;
     Log.Message("PNR " + PNR);
-
-    //writeToFile(JSON.stringify(bookingObject), "D:\\TestData\\TestData_" + faker.random.number(999) + ".txt");
-    writeToFile(JSON.stringify(bookingObject), "E:\\Automation\\Automation\\Automation\\Data\\TestData_A-001.txt");
+    
+    writeToFile(JSON.stringify(bookingObject), path + "TestData_A-001.txt");
 }
 
 //Calls the faker js utilities to return an object with necessary details for adult booking form
