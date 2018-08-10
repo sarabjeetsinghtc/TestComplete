@@ -5,19 +5,20 @@ var Common = require("Common");
 function generateTestData(config, isAPISRequired) {
     var bookingPage, flightSelectSection, paxFormPage, paxFormSection, paxForm, optionalExtraPage, paymentPage;
     var selectedEnvironment = config[config.selectedEnv];
-    var url = selectedEnvironment.Url + config.queryParameter;
+    var url = selectedEnvironment.Url + config.queryParameter + getCurrentDate();
     var paxCount = url.split('/')[6];
     var adults, children, infants, totalPax, i, segment, count = 1;
     var bookingObject = {
         paxList: [{}]
     };
     var path = Common.GetGenericFilePath();
-        
+
     //Gets count of pax category based on axbycz notation where x represents adults, y represents children and z represents infants 
     adults = parseInt(paxCount[1]);
     children = parseInt(paxCount[3]);
     infants = parseInt(paxCount[5]);
     totalPax = adults + children + infants;
+
 
     //Navigates to result page and selects a flight
     Browsers.Item(btChrome).Navigate(url);
@@ -27,23 +28,32 @@ function generateTestData(config, isAPISRequired) {
     bookingObject.flightSegments = [{}];
     aqUtils.Delay(4000);
     flightSelectSection = bookingPage.panelSelectionDetailsHolder;
-    var flightSelectCommon = flightSelectSection.Panel(0).Panel(6).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
-    flightSelectCommon.Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Click();
-    var stops = parseInt(flightSelectSection.Panel(0).Panel(6).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(1).Panel(0).Panel(0).outerText.split(":")[1].trim());
+       
+    var selectedFlightObject = flightDateSelector(3, flightSelectSection);
+    while (selectedFlightObject == 0) {
+        flightSelectSection.Panel(0).Panel(3).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Button(0).Click()
+       aqUtils.Delay(4000);
+        selectedFlightObject = flightDateSelector(0, flightSelectSection);
+    }
+
+
+    //var flightSelectCommon = flightSelectSection.Panel(0).Panel(6).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+    selectedFlightObject.Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Panel(0).Click();
+    var stops = parseInt(selectedFlightObject.Panel(0).Panel(0).Panel(0).Panel(2).Panel(1).Panel(0).Panel(0).outerText.split(":")[1].trim());
     for (var i = 0; i <= stops; i++) {
         segment = {};
-        segment.origin = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(0).Panel(0).Panel(0).TextNode(0).outerText;
-        segment.destination = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(0).Panel(2).Panel(0).TextNode(0).outerText;
-        segment.flightNum = flightSelectCommon.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(2).Panel(1).Panel(0).outerText.split("(")[0].trim();
+        segment.origin = selectedFlightObject.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(0).Panel(0).Panel(0).TextNode(0).outerText;
+        segment.destination = selectedFlightObject.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(0).Panel(2).Panel(0).TextNode(0).outerText;
+        segment.flightNum = selectedFlightObject.Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(i).Panel(0).Panel(2).Panel(1).Panel(0).outerText.split("(")[0].trim();
         bookingObject.flightSegments[i] = segment;
     }
 
-    flightSelectCommon.Panel(0).Panel(2).Panel(0).Panel(0).Click();
-    var flightSelectionType = flightSelectCommon.Panel(2).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0);
-    if (flightSelectionType.Exists) {
-        flightSelectCommon.Panel(2).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Click();
+    selectedFlightObject.Panel(0).Panel(2).Panel(0).Panel(0).Click();
+    var flightSelectionType = selectedFlightObject.Panel(2).Panel(0).Panel(0).Panel(0);
+    if (flightSelectionType.ChildCount>2 && flightSelectionType.Panel(2).ChildCount>0) {
+        selectedFlightObject.Panel(2).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0).Click();
     } else {
-        flightSelectCommon.Panel(2).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Click();
+        selectedFlightObject.Panel(2).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Click();
     }
     bookingPage.buttonEnterYourDetails.Click();
 
@@ -180,11 +190,11 @@ function generateTestData(config, isAPISRequired) {
 
     //Navigates to confirmation page and extracts the PNR details from the page
     Aliases.browser.pageQa4flightsFlydubaiComEnConfi.Wait(35000);
-    var confirmationSection = Aliases.browser.pageQa4flightsFlydubaiComEnConfi.panel.panel.panel.panel.panel;
-    var PNR = confirmationSection.panel.panel.panel.innerText;
+    var confirmationSection = Aliases.browser.pageQa4flightsFlydubaiComEnConfi;
+    var PNR = confirmationSection.Panel(1).Panel("elementToAppend").Panel(3).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).outerText;
     //var flightNum = Aliases.browser.pageQa4flightsFlydubaiComEnConfi.panel.panel.panel2.panel.panel.panel.panel.panel.panel.flightnum.innerText;
     //flightNum = flightNum.trim();
-    var flightDate = Aliases.browser.pageQa4flightsFlydubaiComEnConfi.panel.panel.panel2.panel.panel.panel.panel.panel.panel.flightDate.innerText;
+    var flightDate = confirmationSection.Panel(1).Panel("elementToAppend").Panel(4).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).TextNode(2).innerText;
 
     //Writes the PNR details into the object for further use in check in module    
     var splitDate = flightDate.split(" ");
@@ -197,7 +207,7 @@ function generateTestData(config, isAPISRequired) {
     bookingObject.flightNum = bookingObject.flightSegments[0].flightNum;
     bookingObject.flightDate = formattedDate;
     Log.Message("PNR " + PNR);
-    
+
     writeToFile(JSON.stringify(bookingObject), path + "TestData_A-001.txt");
 }
 
@@ -333,6 +343,51 @@ function writeToFile(paxObjectString, filePath) {
     aqFile.WriteToTextFile(filePath, paxObjectString, aqFile.ctANSI, true);
     Log.Message("The file contents are:");
     Log.Message(aqFile.ReadWholeTextFile(filePath, aqFile.ctANSI));
+}
+
+function getCurrentDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    return yyyy + mm + dd;
+}
+
+function flightOptionSelector(flightSelectSection) {
+    var flightOptions = flightSelectSection.Panel(0).Panel(6).Panel(0);
+    var selectedPanel;
+    for (var j = 0; j < flightOptions.ChildCount; j++) {
+        selectedPanel = flightOptions.Panel(j).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel(0);
+        if (!selectedPanel.outerText.includes("Not available")) {
+            return flightOptions.Panel(j).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+function flightDateSelector(startDay, flightSelectSection) {
+  var datePanel = flightSelectSection.Panel(0).Panel(3).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0);
+    var selectedFlightObject = 0;
+    for (var i = startDay; i < 7; i++) {
+        if (selectedFlightObject != 0) {
+            return selectedFlightObject;
+            break;
+        }
+        var panelText = datePanel.Panel(i).outerText;
+        if (!panelText.includes("Not available") && !panelText.includes("Sold out")) {
+            datePanel.Panel(i).Click();
+            aqUtils.delay(3000);
+            selectedFlightObject = flightOptionSelector(flightSelectSection);
+        }
+    }
+    return selectedFlightObject;
 }
 
 //Export modules for use in DCS windows application

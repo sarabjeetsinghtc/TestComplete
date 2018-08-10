@@ -148,6 +148,9 @@
 		<child name="TestPayment" key="{4E45B0C2-F6F1-4FAA-8FE5-0B77A394E62D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TestPayment.js" />
 		</child>
+		<child name="TestPath" key="{0A2B9CB9-B227-403E-B666-7419ABBC4029}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TestPath.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="Utility" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -231,6 +234,7 @@
 				<ref key="{844A5BE3-AE43-4ADE-BADC-E8DE85E4A355}" />
 				<ref key="{F797EC49-6F60-45FC-B42B-B04A122E6D9D}" />
 				<ref key="{CF4A07D6-882A-4EA9-9A11-34B9840D99CB}" />
+				<ref key="{0A2B9CB9-B227-403E-B666-7419ABBC4029}" />
 			</references>
 		</folder>
 		<folder caption="Data" description="A logical folder that is used to organize project items and elements." moniker="">
